@@ -1,0 +1,284 @@
+/*
+ * Theme: miuix — Xiaomi HyperOS / Miuix style
+ * Primary seed: #3482FF (official Miuix default)
+ * Squircle-inspired continuous radii, clean surfaces, soft elevation + light blur.
+ *
+ * Vars: ThemeTokenVars + shadcn HSL channels (no hsl() wrappers on tokens).
+ * Does not override --space-toolbar-clear / page padding from _default.css.
+ */
+
+[data-theme-id="miuix"] {
+  /* System stack + CJK fallbacks */
+  --theme-font: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+
+  /* Squircle-ish continuous radii (larger than MD3 / apple pills) */
+  --theme-radius: 1.125rem; /* 18px */
+  --theme-card-radius: 1.375rem; /* 22px */
+  --theme-link-radius: 1.875rem; /* 30px */
+
+  /* Soft elevation + HyperOS-like frost */
+  --theme-shadow: 0 4px 16px rgb(0 0 0 / 0.06), 0 1px 4px rgb(0 0 0 / 0.04);
+  --theme-blur: 12px;
+  --theme-border-opacity: 0.55;
+  --theme-content-max: 28rem;
+
+  /* Primary #3482FF */
+  --primary: 217 100% 60%;
+  --ring: 217 100% 60%;
+  --primary-foreground: 0 0% 100%;
+
+  --mi-blue: #3482ff;
+  --mi-transition: 180ms ease;
+  --mi-transition-fast: 150ms ease;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+/* ========== Light Scheme ========== */
+[data-theme-id="miuix"][data-theme="light"] {
+  /* ~#FAFAFA */
+  --background: 0 0% 98%;
+  --foreground: 220 15% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 15% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 15% 15%;
+  /* light blue-gray secondary container */
+  --secondary: 218 40% 94%;
+  --secondary-foreground: 220 20% 25%;
+  --muted: 220 15% 94%;
+  --muted-foreground: 220 8% 45%;
+  --accent: 218 60% 96%;
+  --accent-foreground: 220 15% 15%;
+  --border: 220 12% 88%;
+  --input: 220 12% 88%;
+  --primary: 217 100% 60%;
+  --ring: 217 100% 60%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 72% 50%;
+  --theme-shadow: 0 4px 18px rgb(52 130 255 / 0.08), 0 1px 4px rgb(0 0 0 / 0.04);
+}
+
+/* ========== Dark Scheme ========== */
+[data-theme-id="miuix"][data-theme="dark"] {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 95%;
+  /* ~#0F0F0F */
+  --card: 0 0% 6%;
+  --card-foreground: 0 0% 95%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 95%;
+  --secondary: 217 30% 14%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 217 40% 16%;
+  --accent-foreground: 0 0% 95%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  /* slightly brighter blue on pure black */
+  --primary: 217 100% 65%;
+  --ring: 217 100% 65%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 70% 58%;
+  --theme-shadow: 0 8px 24px rgb(0 0 0 / 0.45), 0 2px 8px rgb(52 130 255 / 0.12);
+}
+
+/* System: default dark; light via prefers-color-scheme */
+[data-theme-id="miuix"][data-theme="system"] {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 95%;
+  --card: 0 0% 6%;
+  --card-foreground: 0 0% 95%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 95%;
+  --secondary: 217 30% 14%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 217 40% 16%;
+  --accent-foreground: 0 0% 95%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --primary: 217 100% 65%;
+  --ring: 217 100% 65%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 70% 58%;
+  --theme-shadow: 0 8px 24px rgb(0 0 0 / 0.45), 0 2px 8px rgb(52 130 255 / 0.12);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="miuix"][data-theme="system"] {
+    --background: 0 0% 98%;
+    --foreground: 220 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+    --secondary: 218 40% 94%;
+    --secondary-foreground: 220 20% 25%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 8% 45%;
+    --accent: 218 60% 96%;
+    --accent-foreground: 220 15% 15%;
+    --border: 220 12% 88%;
+    --input: 220 12% 88%;
+    --primary: 217 100% 60%;
+    --ring: 217 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --destructive: 0 72% 50%;
+    --theme-shadow: 0 4px 18px rgb(52 130 255 / 0.08), 0 1px 4px rgb(0 0 0 / 0.04);
+  }
+}
+
+/* ========== Component polish (structure classes only) ========== */
+
+[data-theme-id="miuix"] .theme-page {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image: none;
+}
+
+[data-theme-id="miuix"] .theme-page--gradient {
+  background-image: none;
+}
+
+[data-theme-id="miuix"] .theme-stack {
+  max-width: var(--theme-content-max, 28rem);
+}
+
+[data-theme-id="miuix"] .theme-card {
+  border: none;
+  border-radius: var(--theme-card-radius);
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--card));
+  padding: 1.2rem 1.05rem 1.3rem;
+  gap: 1.1rem;
+}
+
+[data-theme-id="miuix"] .theme-profile h1 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+[data-theme-id="miuix"] .theme-profile .theme-username {
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="miuix"] .theme-profile .theme-bio {
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+[data-theme-id="miuix"] .theme-meta a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: opacity var(--mi-transition-fast);
+}
+
+[data-theme-id="miuix"] .theme-meta a:hover {
+  opacity: 0.88;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+[data-theme-id="miuix"] .theme-avatar {
+  border-width: 0 !important;
+  box-shadow: var(--theme-shadow);
+}
+
+[data-theme-id="miuix"] .theme-avatar-fallback {
+  border-width: 0 !important;
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+}
+
+/* Links: soft elevated pills (secondary-container feel) */
+[data-theme-id="miuix"] .theme-links {
+  gap: 0.55rem; /* denser — Chinese system habit */
+}
+
+[data-theme-id="miuix"] a.theme-link {
+  border-width: 0;
+  border-radius: var(--theme-link-radius);
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  box-shadow: var(--theme-shadow);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition:
+    background var(--mi-transition),
+    box-shadow var(--mi-transition),
+    transform var(--mi-transition-fast),
+    color var(--mi-transition-fast);
+}
+
+[data-theme-id="miuix"] a.theme-link:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 10%, hsl(var(--card)));
+  box-shadow: 0 6px 20px rgb(52 130 255 / 0.15), 0 2px 6px rgb(0 0 0 / 0.06);
+  transform: translateY(-1.5px);
+  color: hsl(var(--card-foreground));
+}
+
+[data-theme-id="miuix"] a.theme-link:active {
+  transform: translateY(0);
+  box-shadow: var(--theme-shadow);
+}
+
+[data-theme-id="miuix"] a.theme-link:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+[data-theme-id="miuix"] a.theme-link .theme-link-icon {
+  color: hsl(var(--primary));
+  opacity: 0.95;
+  transition: color var(--mi-transition-fast);
+}
+
+[data-theme-id="miuix"] a.theme-link .theme-link-external {
+  opacity: 0.4;
+  transition: opacity var(--mi-transition-fast);
+}
+
+[data-theme-id="miuix"] a.theme-link:hover .theme-link-external {
+  opacity: 0.6;
+}
+
+[data-theme-id="miuix"] .theme-footer {
+  font-family: var(--theme-font);
+  font-size: 0.8125rem;
+  opacity: 0.7;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Toolbar: soft surface + optional frost */
+[data-theme-id="miuix"] aside.theme-toolbar button,
+[data-theme-id="miuix"] .theme-toolbar-btn {
+  border-radius: var(--theme-radius) !important;
+  border: 1px solid hsl(var(--border) / var(--theme-border-opacity, 0.55)) !important;
+  box-shadow: var(--theme-shadow) !important;
+  background: color-mix(in srgb, hsl(var(--card)) 82%, transparent) !important;
+  backdrop-filter: blur(var(--theme-blur)) !important;
+  -webkit-backdrop-filter: blur(var(--theme-blur)) !important;
+  font-weight: 500;
+  transition:
+    background var(--mi-transition),
+    border-color var(--mi-transition),
+    box-shadow var(--mi-transition) !important;
+}
+
+[data-theme-id="miuix"] aside.theme-toolbar button:hover,
+[data-theme-id="miuix"] .theme-toolbar-btn:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 10%, hsl(var(--card))) !important;
+  border-color: hsl(var(--primary) / 0.35) !important;
+  box-shadow: 0 6px 18px rgb(52 130 255 / 0.12), 0 1px 4px rgb(0 0 0 / 0.05) !important;
+}

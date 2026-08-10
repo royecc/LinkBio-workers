@@ -1,0 +1,13 @@
+{
+  "id": "anthropic",
+  "name": "Anthropic Art",
+  "nameZh": "Anthropic 插画风",
+  "description": "Editorial paper feel — oat page, ivory notes, clay accent, serif type, thick ink strokes, no shadow",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": true
+  }
+}

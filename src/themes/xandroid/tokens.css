@@ -1,0 +1,343 @@
+/*
+ * Theme: xandroid — X Android rewrite aesthetic.
+ *
+ * Light: pure white canvas · near-black ink · neutral gray hairlines
+ * Dark:  pure black canvas · elevated #16181c surfaces · dim hairlines
+ * Accent: #1D9BF0 only (primary / focus / link meta) — never large fills
+ *
+ * Links = timeline list rows (left icon + title, hairline dividers).
+ * No frosted glass, grid backgrounds, or hard offset shadows.
+ * Short transitions (~120–150ms).
+ *
+ * Vars align with existing packs (ThemeTokenVars + shadcn color tokens).
+ */
+
+[data-theme-id="xandroid"] {
+  --theme-font: "Chirp", "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei UI", sans-serif;
+  /* ~14px card chrome; links stay square (timeline) */
+  --theme-radius: 14px;
+  --theme-card-radius: 14px;
+  --theme-link-radius: 0;
+  --theme-shadow: none;
+  --theme-border-opacity: 1;
+  /* #1D9BF0 ≈ hsl(203 88% 53%) */
+  --primary: 203 88% 53%;
+  --ring: 203 88% 53%;
+  --primary-foreground: 0 0% 100%;
+  --theme-content-max: 28rem;
+
+  --xa-blue: #1d9bf0;
+  --xa-hover: rgba(15, 20, 25, 0.03);
+  --xa-divider: hsl(var(--border));
+  --xa-transition: 120ms ease;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* ── Light: solid white ─────────────────────────────────────── */
+[data-theme-id="xandroid"][data-theme="light"] {
+  /* pure white */
+  --background: 0 0% 100%;
+  /* near-black ink ~#0f1419 */
+  --foreground: 210 24% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 24% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 24% 8%;
+  /* neutral gray surfaces */
+  --secondary: 210 12% 96%;
+  --secondary-foreground: 210 24% 8%;
+  --muted: 210 12% 96%;
+  /* secondary text ~#536471 */
+  --muted-foreground: 205 15% 38%;
+  --accent: 203 88% 96%;
+  --accent-foreground: 203 88% 40%;
+  /* hairline ~#eff3f4 */
+  --border: 200 16% 94%;
+  --input: 200 16% 94%;
+  --primary: 203 88% 53%;
+  --ring: 203 88% 53%;
+  --destructive: 0 84% 50%;
+  --theme-shadow: none;
+  --xa-hover: rgba(15, 20, 25, 0.03);
+  --xa-blue: #1d9bf0;
+}
+
+/* ── Dark: pure black ───────────────────────────────────────── */
+[data-theme-id="xandroid"][data-theme="dark"] {
+  --background: 0 0% 0%;
+  /* #e7e9ea-ish */
+  --foreground: 200 10% 92%;
+  /* elevated solid panel #16181c */
+  --card: 220 10% 10%;
+  --card-foreground: 200 10% 92%;
+  --popover: 220 10% 10%;
+  --popover-foreground: 200 10% 92%;
+  --secondary: 220 8% 14%;
+  --secondary-foreground: 200 10% 92%;
+  --muted: 220 8% 14%;
+  /* #71767b */
+  --muted-foreground: 210 6% 48%;
+  --accent: 203 40% 14%;
+  --accent-foreground: 203 88% 70%;
+  /* dim hairline */
+  --border: 220 8% 18%;
+  --input: 220 8% 18%;
+  /* keep brand blue readable on black */
+  --primary: 203 88% 53%;
+  --ring: 203 88% 53%;
+  --destructive: 0 72% 55%;
+  --theme-shadow: none;
+  --xa-hover: rgba(231, 233, 234, 0.04);
+  --xa-blue: #1d9bf0;
+}
+
+/* ── System: default dark; light via prefers ─────────────────── */
+[data-theme-id="xandroid"][data-theme="system"] {
+  --background: 0 0% 0%;
+  --foreground: 200 10% 92%;
+  --card: 220 10% 10%;
+  --card-foreground: 200 10% 92%;
+  --popover: 220 10% 10%;
+  --popover-foreground: 200 10% 92%;
+  --secondary: 220 8% 14%;
+  --secondary-foreground: 200 10% 92%;
+  --muted: 220 8% 14%;
+  --muted-foreground: 210 6% 48%;
+  --accent: 203 40% 14%;
+  --accent-foreground: 203 88% 70%;
+  --border: 220 8% 18%;
+  --input: 220 8% 18%;
+  --primary: 203 88% 53%;
+  --ring: 203 88% 53%;
+  --theme-shadow: none;
+  --xa-hover: rgba(231, 233, 234, 0.04);
+  --xa-blue: #1d9bf0;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="xandroid"][data-theme="system"] {
+    --background: 0 0% 100%;
+    --foreground: 210 24% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 24% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 24% 8%;
+    --secondary: 210 12% 96%;
+    --secondary-foreground: 210 24% 8%;
+    --muted: 210 12% 96%;
+    --muted-foreground: 205 15% 38%;
+    --accent: 203 88% 96%;
+    --accent-foreground: 203 88% 40%;
+    --border: 200 16% 94%;
+    --input: 200 16% 94%;
+    --primary: 203 88% 53%;
+    --ring: 203 88% 53%;
+    --theme-shadow: none;
+    --xa-hover: rgba(15, 20, 25, 0.03);
+    --xa-blue: #1d9bf0;
+  }
+}
+
+/* ── Page: solid only — no grid / gradient / glass ──────────── */
+
+[data-theme-id="xandroid"] .theme-page {
+  background-color: hsl(var(--background));
+  background-image: none;
+  color: hsl(var(--foreground));
+}
+
+[data-theme-id="xandroid"] .theme-page--gradient {
+  background-color: hsl(var(--background));
+  background-image: none;
+}
+
+[data-theme-id="xandroid"] .theme-stack {
+  max-width: var(--theme-content-max, 28rem);
+  gap: 0;
+}
+
+/* Profile + links share one solid timeline surface */
+[data-theme-id="xandroid"] .theme-card {
+  border-radius: var(--theme-card-radius);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: none;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* ── Profile (header cell) ──────────────────────────────────── */
+
+[data-theme-id="xandroid"] .theme-profile {
+  padding: 1.15rem 1rem 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+[data-theme-id="xandroid"] .theme-profile h1 {
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3.2vw, 1.45rem);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: hsl(var(--foreground));
+}
+
+[data-theme-id="xandroid"] .theme-profile .theme-username {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+[data-theme-id="xandroid"] .theme-profile .theme-bio {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  /* X bio uses primary ink, not muted secondary */
+  color: hsl(var(--foreground)) !important;
+  font-weight: 400;
+}
+
+[data-theme-id="xandroid"] .theme-meta {
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Accent only on interactive meta links */
+[data-theme-id="xandroid"] .theme-meta a {
+  color: var(--xa-blue);
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity var(--xa-transition);
+}
+
+[data-theme-id="xandroid"] .theme-meta a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  opacity: 0.9;
+}
+
+[data-theme-id="xandroid"] .theme-avatar {
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: none !important;
+  background: hsl(var(--secondary));
+  border-radius: 9999px !important;
+}
+
+[data-theme-id="xandroid"] .theme-avatar-fallback {
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: none !important;
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  font-weight: 700;
+  border-radius: 9999px !important;
+}
+
+/* ── Links: timeline list (left icon + title) ───────────────── */
+
+[data-theme-id="xandroid"] .theme-links {
+  gap: 0;
+  width: 100%;
+}
+
+[data-theme-id="xandroid"] a.theme-link {
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 3.25rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid hsl(var(--border));
+  background: transparent;
+  color: hsl(var(--foreground));
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  box-shadow: none !important;
+  gap: 0.75rem;
+  transition:
+    background-color var(--xa-transition),
+    color var(--xa-transition);
+}
+
+[data-theme-id="xandroid"] a.theme-link:last-child {
+  border-bottom: none;
+}
+
+[data-theme-id="xandroid"] a.theme-link:hover {
+  background: var(--xa-hover);
+  border-color: hsl(var(--border));
+  box-shadow: none !important;
+  color: hsl(var(--foreground));
+}
+
+[data-theme-id="xandroid"] a.theme-link:active {
+  background: var(--xa-hover);
+  transform: none;
+  box-shadow: none !important;
+}
+
+[data-theme-id="xandroid"] a.theme-link:focus-visible {
+  outline: 2px solid var(--xa-blue);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* Icon left; stay neutral (blue only on hover / focus chrome) */
+[data-theme-id="xandroid"] a.theme-link .theme-link-icon {
+  color: hsl(var(--muted-foreground));
+  opacity: 1;
+  transition: color var(--xa-transition);
+}
+
+[data-theme-id="xandroid"] a.theme-link:hover .theme-link-icon {
+  color: var(--xa-blue);
+}
+
+/* Timeline rows emphasize title — mute external chevron */
+[data-theme-id="xandroid"] a.theme-link .theme-link-external {
+  opacity: 0.28;
+  width: 0.9rem;
+  height: 0.9rem;
+  transition: opacity var(--xa-transition);
+}
+
+[data-theme-id="xandroid"] a.theme-link:hover .theme-link-external {
+  opacity: 0.45;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+[data-theme-id="xandroid"] .theme-footer {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0;
+}
+
+/* ── Toolbar: solid, no glass ───────────────────────────────── */
+
+[data-theme-id="xandroid"] aside.theme-toolbar button,
+[data-theme-id="xandroid"] .theme-toolbar-btn {
+  border-radius: 14px !important;
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: none !important;
+  background: hsl(var(--card)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  font-weight: 500;
+  transition:
+    background-color var(--xa-transition),
+    border-color var(--xa-transition) !important;
+}
+
+[data-theme-id="xandroid"] aside.theme-toolbar button:hover,
+[data-theme-id="xandroid"] .theme-toolbar-btn:hover {
+  background: var(--xa-hover) !important;
+  border-color: hsl(var(--border)) !important;
+  box-shadow: none !important;
+}

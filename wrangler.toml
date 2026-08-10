@@ -1,0 +1,32 @@
+# LinkBio-workers — Next.js on Cloudflare Workers (OpenNext)
+name = "linkbio-workers"
+main = ".open-next/worker.js"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# Self-reference (required by OpenNext Cloudflare)
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "linkbio-workers"
+
+# ── App KV (profile / links / settings / analytics) ───────────
+# Placeholders injected by CI or replaced locally — never commit real IDs.
+[[kv_namespaces]]
+binding = "BIO_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_YOUR_KV_PREVIEW_ID"
+
+[vars]
+SITE_NAME = "LinkBio"
+SITE_URL = "https://YOUR_SUBDOMAIN.workers.dev"
+# Default visual pack id when KV settings.theme is empty/invalid (not a Secret)
+DEFAULT_THEME = "minimal"
+# Optional future: DEFAULT_COLOR_MODE = "system"
+
+# Secrets (wrangler secret put ...):
+#   ADMIN_PASSWORD
+#   SESSION_SECRET

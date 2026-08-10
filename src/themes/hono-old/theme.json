@@ -1,0 +1,13 @@
+{
+  "id": "hono-old",
+  "name": "Hono Classic",
+  "nameZh": "Hono 经典",
+  "description": "Linear/Vercel-style dark — near-black canvas, sharp indigo, strong radial glow, centered link buttons",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": true,
+    "customFonts": false
+  }
+}

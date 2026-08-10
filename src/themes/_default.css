@@ -1,0 +1,286 @@
+/**
+ * Layout / component styles shared by all visual themes.
+ *
+ * Spacing scale (responsive):
+ *   --space-page-x / --space-page-y  — page padding
+ *   --space-stack                    — gap between profile / links / footer
+ *   --space-links                    — gap between link buttons
+ *   --space-toolbar-inset            — fixed toolbar offset from edges
+ *   --space-toolbar-clear            — top clear zone so content is not under toolbar
+ *
+ * Color mode: data-theme = system | light | dark
+ * Visual pack: data-theme-id = base | minimal | apple | ...
+ */
+
+:root {
+  /* Base (mobile-first) */
+  --space-page-x: max(1rem, env(safe-area-inset-left, 0px));
+  --space-page-x-end: max(1rem, env(safe-area-inset-right, 0px));
+  --space-page-y-top: max(1rem, env(safe-area-inset-top, 0px));
+  --space-page-y-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  --space-stack: 1.25rem;
+  --space-links: 0.75rem;
+  --space-toolbar-inset: max(0.75rem, env(safe-area-inset-top, 0px));
+  --space-toolbar-inset-inline: max(0.75rem, env(safe-area-inset-right, 0px));
+  --space-toolbar-gap: 0.5rem;
+  /* Toolbar row height (~40px) + inset + buffer — keep content clear */
+  --space-toolbar-clear: calc(
+    var(--space-toolbar-inset) + 2.75rem + var(--space-toolbar-gap) + 0.5rem
+  );
+  --space-touch-min: 2.75rem; /* ~44px touch target */
+  --theme-content-max: 26.5rem;
+}
+
+@media (min-width: 480px) {
+  :root {
+    --space-page-x: max(1.25rem, env(safe-area-inset-left, 0px));
+    --space-page-x-end: max(1.25rem, env(safe-area-inset-right, 0px));
+    --space-stack: 1.5rem;
+    --space-links: 0.85rem;
+    --space-toolbar-inset: max(0.875rem, env(safe-area-inset-top, 0px));
+    --space-toolbar-inset-inline: max(0.875rem, env(safe-area-inset-right, 0px));
+    --space-toolbar-clear: calc(
+      var(--space-toolbar-inset) + 2.75rem + var(--space-toolbar-gap) + 0.75rem
+    );
+    --theme-content-max: 27rem;
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --space-page-x: max(1.5rem, env(safe-area-inset-left, 0px));
+    --space-page-x-end: max(1.5rem, env(safe-area-inset-right, 0px));
+    --space-page-y-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+    --space-stack: 1.75rem;
+    --space-links: 0.9rem;
+    --space-toolbar-inset: max(1rem, env(safe-area-inset-top, 0px));
+    --space-toolbar-inset-inline: max(1rem, env(safe-area-inset-right, 0px));
+    /* Wider toolbar with labels on sm+ */
+    --space-toolbar-clear: calc(
+      var(--space-toolbar-inset) + 3rem + var(--space-toolbar-gap) + 0.75rem
+    );
+    --theme-content-max: 28rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-page-x: max(2rem, env(safe-area-inset-left, 0px));
+    --space-page-x-end: max(2rem, env(safe-area-inset-right, 0px));
+    --space-stack: 2rem;
+    --space-links: 1rem;
+    --theme-content-max: 28rem;
+  }
+}
+
+/* ── Page shell ─────────────────────────────────────────────── */
+
+.theme-page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Top padding clears fixed toolbar; sides/bottom use safe-area */
+  padding-top: var(--space-toolbar-clear);
+  padding-right: var(--space-page-x-end);
+  padding-bottom: var(--space-page-y-bottom);
+  padding-left: var(--space-page-x);
+  font-family: var(--theme-font, inherit);
+  /* Avoid horizontal scroll from shadows / 100vw tricks */
+  overflow-x: clip;
+}
+
+.theme-page--gradient {
+  background-image: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    hsl(var(--primary) / 0.15),
+    transparent 60%
+  );
+  background-repeat: no-repeat;
+}
+
+.theme-stack {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--theme-content-max);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-stack);
+  /* Prevent flex children from overflowing and overlapping */
+  min-width: 0;
+}
+
+.theme-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--theme-card-radius, var(--theme-radius, 1rem));
+  min-width: 0;
+}
+
+.theme-avatar {
+  border-radius: 9999px;
+  border-width: 2px;
+  box-shadow: var(--theme-shadow, none);
+  flex-shrink: 0;
+}
+
+.theme-profile {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding-inline: 0.25rem;
+}
+
+.theme-profile h1 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.theme-bio {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.theme-meta {
+  max-width: 100%;
+  justify-content: center;
+  gap: 0.5rem 0.85rem;
+}
+
+.theme-links {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-links);
+  min-width: 0;
+}
+
+.theme-link {
+  box-sizing: border-box;
+  border-radius: var(--theme-link-radius, var(--theme-radius, 1rem));
+  box-shadow: var(--theme-shadow, none);
+  min-height: var(--space-touch-min);
+  /* Keep long titles from pushing icons out of bounds */
+  max-width: 100%;
+  min-width: 0;
+}
+
+.theme-link > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-link-icon,
+.theme-link-external {
+  flex-shrink: 0;
+}
+
+.theme-footer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin-top: auto;
+  padding-top: max(1.75rem, var(--space-stack));
+  padding-inline: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  overflow-wrap: anywhere;
+}
+
+/* ── Fixed toolbar (must not cover content or each other) ───── */
+
+.theme-toolbar {
+  position: fixed;
+  z-index: 50;
+  top: var(--space-toolbar-inset);
+  right: var(--space-toolbar-inset-inline);
+  left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: var(--space-toolbar-gap);
+  max-width: min(100vw - 1rem, 22rem);
+  pointer-events: none;
+  /* Isolate from page layout; no stacking fight with content */
+  isolation: isolate;
+}
+
+.theme-toolbar > * {
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+
+.theme-toolbar-btn {
+  max-width: 100%;
+  min-height: 2.25rem;
+}
+
+/* Dropdown panels stay above page content, inside viewport */
+.theme-toolbar [data-radix-popper-content-wrapper] {
+  z-index: 60 !important;
+}
+
+/* ── Admin shared spacing (theme-agnostic) ──────────────────── */
+
+.admin-shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: max(1.25rem, env(safe-area-inset-top, 0px))
+    max(1rem, env(safe-area-inset-right, 0px))
+    max(2rem, env(safe-area-inset-bottom, 0px))
+    max(1rem, env(safe-area-inset-left, 0px));
+}
+
+@media (min-width: 640px) {
+  .admin-shell {
+    padding: 2rem max(1.25rem, env(safe-area-inset-right, 0px)) 3rem
+      max(1.25rem, env(safe-area-inset-left, 0px));
+  }
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  min-width: 0;
+}
+
+.admin-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.admin-nav-links a,
+.admin-nav-links button {
+  min-height: 2.25rem;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .admin-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+}

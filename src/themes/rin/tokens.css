@@ -1,0 +1,296 @@
+/*
+ * Theme: rin — openRin/Rin default UI
+ * Primary: #FC466B (252 70 107)
+ * Light bg: #f5f5f5 / Dark bg: #1c1c1e
+ * Clean neutral surfaces, soft elevation, modern edge-native blog aesthetic.
+ *
+ * Vars: ThemeTokenVars + shadcn HSL channels (no hsl() wrappers on tokens).
+ * Does not override --space-toolbar-clear / page padding from _default.css.
+ */
+
+[data-theme-id="rin"] {
+  /* System stack — clean modern */
+  --theme-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+
+  /* Medium, blog-like radii */
+  --theme-radius: 0.75rem; /* 12px */
+  --theme-card-radius: 1rem; /* 16px */
+  --theme-link-radius: 1.125rem; /* 18px */
+
+  /* Soft elevation — no glass */
+  --theme-shadow: 0 4px 12px rgb(0 0 0 / 0.06), 0 1px 3px rgb(0 0 0 / 0.04);
+  --theme-blur: 0px;
+  --theme-border-opacity: 0.6;
+  --theme-content-max: 28rem;
+
+  /* Primary #FC466B */
+  --primary: 348 97% 63%;
+  --ring: 348 97% 63%;
+  --primary-foreground: 0 0% 100%;
+
+  --rin-rose: #fc466b;
+  --rin-transition: 160ms ease;
+  --rin-transition-fast: 140ms ease;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+/* ========== Light Scheme ========== */
+[data-theme-id="rin"][data-theme="light"] {
+  /* #f5f5f5 */
+  --background: 0 0% 96%;
+  --foreground: 0 0% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 9%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 30%;
+  --muted: 0 0% 94%;
+  /* neutral-500-ish */
+  --muted-foreground: 0 0% 45%;
+  --accent: 348 80% 96%;
+  --accent-foreground: 348 60% 30%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --primary: 348 97% 63%;
+  --ring: 348 97% 63%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 72% 50%;
+  --theme-shadow: 0 4px 14px rgb(252 70 107 / 0.08), 0 1px 3px rgb(0 0 0 / 0.04);
+}
+
+/* ========== Dark Scheme ========== */
+[data-theme-id="rin"][data-theme="dark"] {
+  /* #1c1c1e */
+  --background: 240 3% 11%;
+  --foreground: 0 0% 98%;
+  --card: 240 3% 15%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 3% 15%;
+  --popover-foreground: 0 0% 98%;
+  --secondary: 240 3% 18%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 240 3% 18%;
+  /* neutral-200-ish */
+  --muted-foreground: 0 0% 70%;
+  --accent: 348 40% 18%;
+  --accent-foreground: 348 80% 85%;
+  --border: 240 3% 22%;
+  --input: 240 3% 22%;
+  /* slightly brighter rose on dark */
+  --primary: 348 90% 68%;
+  --ring: 348 90% 68%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 70% 58%;
+  --theme-shadow: 0 6px 18px rgb(0 0 0 / 0.4), 0 2px 6px rgb(252 70 107 / 0.12);
+}
+
+/* System: default dark; light via prefers-color-scheme */
+[data-theme-id="rin"][data-theme="system"] {
+  --background: 240 3% 11%;
+  --foreground: 0 0% 98%;
+  --card: 240 3% 15%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 3% 15%;
+  --popover-foreground: 0 0% 98%;
+  --secondary: 240 3% 18%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 240 3% 18%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 348 40% 18%;
+  --accent-foreground: 348 80% 85%;
+  --border: 240 3% 22%;
+  --input: 240 3% 22%;
+  --primary: 348 90% 68%;
+  --ring: 348 90% 68%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 70% 58%;
+  --theme-shadow: 0 6px 18px rgb(0 0 0 / 0.4), 0 2px 6px rgb(252 70 107 / 0.12);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="rin"][data-theme="system"] {
+    --background: 0 0% 96%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 30%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 348 80% 96%;
+    --accent-foreground: 348 60% 30%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --primary: 348 97% 63%;
+    --ring: 348 97% 63%;
+    --primary-foreground: 0 0% 100%;
+    --destructive: 0 72% 50%;
+    --theme-shadow: 0 4px 14px rgb(252 70 107 / 0.08), 0 1px 3px rgb(0 0 0 / 0.04);
+  }
+}
+
+/* ========== Component polish (structure classes only) ========== */
+
+[data-theme-id="rin"] .theme-page {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image: none;
+}
+
+[data-theme-id="rin"] .theme-page--gradient {
+  background-image: none;
+}
+
+[data-theme-id="rin"] .theme-stack {
+  max-width: var(--theme-content-max, 28rem);
+}
+
+[data-theme-id="rin"] .theme-card {
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: var(--theme-card-radius);
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--card));
+  padding: 1.15rem 1rem 1.25rem;
+  gap: 1.1rem;
+}
+
+[data-theme-id="rin"] .theme-profile h1 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: hsl(var(--foreground));
+}
+
+[data-theme-id="rin"] .theme-profile .theme-username {
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="rin"] .theme-profile .theme-bio {
+  font-weight: 400;
+  line-height: 1.5;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="rin"] .theme-meta a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: opacity var(--rin-transition-fast);
+}
+
+[data-theme-id="rin"] .theme-meta a:hover {
+  opacity: 0.88;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+[data-theme-id="rin"] .theme-avatar {
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: hsl(var(--border) / 0.6) !important;
+  box-shadow: var(--theme-shadow);
+}
+
+[data-theme-id="rin"] .theme-avatar-fallback {
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: hsl(var(--border) / 0.6) !important;
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+}
+
+/* Links: clean cards + rose-tinted hover */
+[data-theme-id="rin"] .theme-links {
+  gap: 0.65rem;
+}
+
+[data-theme-id="rin"] a.theme-link {
+  border-width: 1px;
+  border-style: solid;
+  border-color: hsl(var(--border) / 0.7);
+  border-radius: var(--theme-link-radius);
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  box-shadow: var(--theme-shadow);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition:
+    background var(--rin-transition),
+    border-color var(--rin-transition),
+    box-shadow var(--rin-transition),
+    transform var(--rin-transition-fast),
+    color var(--rin-transition-fast);
+}
+
+[data-theme-id="rin"] a.theme-link:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 9%, hsl(var(--card)));
+  border-color: hsl(var(--primary) / 0.45);
+  box-shadow: 0 6px 16px rgb(252 70 107 / 0.14), 0 2px 5px rgb(0 0 0 / 0.05);
+  transform: translateY(-1px);
+  color: hsl(var(--card-foreground));
+}
+
+[data-theme-id="rin"] a.theme-link:active {
+  transform: translateY(0);
+  box-shadow: var(--theme-shadow);
+}
+
+[data-theme-id="rin"] a.theme-link:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+[data-theme-id="rin"] a.theme-link .theme-link-icon {
+  color: hsl(var(--primary));
+  opacity: 0.95;
+  transition: color var(--rin-transition-fast);
+}
+
+[data-theme-id="rin"] a.theme-link .theme-link-external {
+  opacity: 0.4;
+  transition: opacity var(--rin-transition-fast);
+}
+
+[data-theme-id="rin"] a.theme-link:hover .theme-link-external {
+  opacity: 0.6;
+}
+
+[data-theme-id="rin"] .theme-footer {
+  font-family: var(--theme-font);
+  font-size: 0.8125rem;
+  opacity: 0.75;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Toolbar: solid, no glass */
+[data-theme-id="rin"] aside.theme-toolbar button,
+[data-theme-id="rin"] .theme-toolbar-btn {
+  border-radius: var(--theme-radius) !important;
+  border: 1px solid hsl(var(--border) / 0.7) !important;
+  box-shadow: var(--theme-shadow) !important;
+  background: hsl(var(--card)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  font-weight: 500;
+  transition:
+    background var(--rin-transition),
+    border-color var(--rin-transition),
+    box-shadow var(--rin-transition) !important;
+}
+
+[data-theme-id="rin"] aside.theme-toolbar button:hover,
+[data-theme-id="rin"] .theme-toolbar-btn:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 9%, hsl(var(--card))) !important;
+  border-color: hsl(var(--primary) / 0.4) !important;
+  box-shadow: 0 6px 16px rgb(252 70 107 / 0.12), 0 1px 3px rgb(0 0 0 / 0.04) !important;
+}

@@ -1,0 +1,86 @@
+{
+  "fallbackId": "link",
+  "icons": {
+    "link": {
+      "label": "Link",
+      "labelZh": "链接"
+    },
+    "website": {
+      "label": "Website",
+      "labelZh": "网站",
+      "aliases": [
+        "globe"
+      ]
+    },
+    "email": {
+      "label": "Email",
+      "labelZh": "邮箱",
+      "aliases": [
+        "mail"
+      ]
+    },
+    "github": {
+      "label": "GitHub",
+      "labelZh": "GitHub"
+    },
+    "x": {
+      "label": "X",
+      "labelZh": "X",
+      "aliases": [
+        "twitter"
+      ]
+    },
+    "telegram": {
+      "label": "Telegram",
+      "labelZh": "Telegram"
+    },
+    "discord": {
+      "label": "Discord",
+      "labelZh": "Discord"
+    },
+    "youtube": {
+      "label": "YouTube",
+      "labelZh": "YouTube"
+    },
+    "bilibili": {
+      "label": "Bilibili",
+      "labelZh": "哔哩哔哩"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "labelZh": "Instagram"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "labelZh": "LinkedIn"
+    },
+    "facebook": {
+      "label": "Facebook",
+      "labelZh": "Facebook"
+    },
+    "reddit": {
+      "label": "Reddit",
+      "labelZh": "Reddit"
+    },
+    "twitch": {
+      "label": "Twitch",
+      "labelZh": "Twitch"
+    },
+    "tiktok": {
+      "label": "TikTok",
+      "labelZh": "TikTok"
+    },
+    "rss": {
+      "label": "RSS",
+      "labelZh": "RSS"
+    },
+    "weibo": {
+      "label": "Weibo",
+      "labelZh": "微博"
+    },
+    "xiaohongshu": {
+      "label": "Xiaohongshu",
+      "labelZh": "小红书"
+    }
+  }
+}

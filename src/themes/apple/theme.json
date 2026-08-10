@@ -1,0 +1,13 @@
+{
+  "id": "apple",
+  "name": "Apple",
+  "nameZh": "Apple 风格",
+  "description": "Apple.com product marketing — solid cool-gray canvas, SF stack, 28px tiles, pill CTAs, first-link primary blue",
+  "version": 3,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": true
+  }
+}

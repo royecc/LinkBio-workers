@@ -1,0 +1,322 @@
+/*
+ * Theme: md3 — Material Design 3 Baseline
+ * Seed: #6750A4 (official)
+ * Light / Dark fully independent mappings (tonal surfaces).
+ * Shape scale + soft elevation; Roboto stack. No glass / grid / hard shadows.
+ *
+ * Vars align with ThemeTokenVars + shadcn HSL channels (no hsl() wrappers on tokens).
+ */
+
+[data-theme-id="md3"] {
+  /* Typography: Roboto first, system fallbacks */
+  --theme-font: Roboto, "Roboto Flex", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI",
+    sans-serif;
+
+  /* Shape Scale (MD3 Medium ~12px / Large ~16px / Full-ish links) */
+  --theme-radius: 0.75rem; /* 12px */
+  --theme-card-radius: 1rem; /* 16px */
+  --theme-link-radius: 1.5rem; /* 24px — filled-button roundness */
+
+  /* Elevation Level 1–2 (light default; dark overrides) */
+  --theme-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.12), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --theme-border-opacity: 1;
+  --theme-blur: 0px;
+  --theme-content-max: 28rem;
+
+  /* Primary baseline (Light seed #6750A4) */
+  --primary: 262 52% 48%;
+  --ring: 262 52% 48%;
+  --primary-foreground: 0 0% 100%;
+
+  --md3-transition: 150ms ease;
+  --md3-transition-fast: 120ms ease;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+/* ========== Light Scheme ========== */
+[data-theme-id="md3"][data-theme="light"] {
+  /* #FEF7FF surface */
+  --background: 300 100% 98%;
+  /* #1D1B20 on-surface */
+  --foreground: 255 7% 11%;
+  /* #F3EDF7 surface-container */
+  --card: 276 38% 95%;
+  --card-foreground: 255 7% 11%;
+  --popover: 276 38% 95%;
+  --popover-foreground: 255 7% 11%;
+  /* #625B71 secondary */
+  --secondary: 259 11% 40%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 276 20% 93%;
+  /* on-surface-variant-ish */
+  --muted-foreground: 270 5% 40%;
+  --accent: 276 38% 95%;
+  --accent-foreground: 255 7% 11%;
+  /* #79747E outline */
+  --border: 270 4% 47%;
+  --input: 270 4% 47%;
+  --primary: 262 52% 48%;
+  --ring: 262 52% 48%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 72% 46%;
+  --theme-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+}
+
+/* ========== Dark Scheme ========== */
+[data-theme-id="md3"][data-theme="dark"] {
+  /* #141218 surface */
+  --background: 260 14% 8%;
+  /* #E6E0E9 on-surface */
+  --foreground: 280 17% 90%;
+  /* #211F26 surface-container */
+  --card: 260 12% 13%;
+  --card-foreground: 280 17% 90%;
+  --popover: 260 12% 13%;
+  --popover-foreground: 280 17% 90%;
+  /* #CCC2DC */
+  --secondary: 258 20% 80%;
+  --secondary-foreground: 260 15% 22%;
+  --muted: 260 10% 16%;
+  --muted-foreground: 270 8% 70%;
+  --accent: 260 12% 16%;
+  --accent-foreground: 280 17% 90%;
+  /* #938F99 outline */
+  --border: 264 5% 58%;
+  --input: 264 5% 58%;
+  /* #D0BCFF primary */
+  --primary: 258 100% 87%;
+  --ring: 258 100% 87%;
+  /* #381E72 on-primary */
+  --primary-foreground: 259 58% 28%;
+  --destructive: 6 80% 70%;
+  --theme-shadow: 0 2px 6px 0 rgb(0 0 0 / 0.35), 0 1px 3px -1px rgb(0 0 0 / 0.25);
+}
+
+/* System: default dark; light via prefers-color-scheme */
+[data-theme-id="md3"][data-theme="system"] {
+  --background: 260 14% 8%;
+  --foreground: 280 17% 90%;
+  --card: 260 12% 13%;
+  --card-foreground: 280 17% 90%;
+  --popover: 260 12% 13%;
+  --popover-foreground: 280 17% 90%;
+  --secondary: 258 20% 80%;
+  --secondary-foreground: 260 15% 22%;
+  --muted: 260 10% 16%;
+  --muted-foreground: 270 8% 70%;
+  --accent: 260 12% 16%;
+  --accent-foreground: 280 17% 90%;
+  --border: 264 5% 58%;
+  --input: 264 5% 58%;
+  --primary: 258 100% 87%;
+  --ring: 258 100% 87%;
+  --primary-foreground: 259 58% 28%;
+  --destructive: 6 80% 70%;
+  --theme-shadow: 0 2px 6px 0 rgb(0 0 0 / 0.35), 0 1px 3px -1px rgb(0 0 0 / 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="md3"][data-theme="system"] {
+    --background: 300 100% 98%;
+    --foreground: 255 7% 11%;
+    --card: 276 38% 95%;
+    --card-foreground: 255 7% 11%;
+    --popover: 276 38% 95%;
+    --popover-foreground: 255 7% 11%;
+    --secondary: 259 11% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 276 20% 93%;
+    --muted-foreground: 270 5% 40%;
+    --accent: 276 38% 95%;
+    --accent-foreground: 255 7% 11%;
+    --border: 270 4% 47%;
+    --input: 270 4% 47%;
+    --primary: 262 52% 48%;
+    --ring: 262 52% 48%;
+    --primary-foreground: 0 0% 100%;
+    --destructive: 0 72% 46%;
+    --theme-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  }
+}
+
+/* ========== Component polish (structure classes only) ========== */
+
+[data-theme-id="md3"] .theme-page {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image: none;
+}
+
+[data-theme-id="md3"] .theme-page--gradient {
+  /* MD3: clean tonal canvas — no brand radial */
+  background-image: none;
+}
+
+[data-theme-id="md3"] .theme-stack {
+  max-width: var(--theme-content-max, 28rem);
+}
+
+[data-theme-id="md3"] .theme-card {
+  border-radius: var(--theme-card-radius);
+  border: 1px solid hsl(var(--border) / 0.4);
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--card));
+  padding: 1.15rem 1rem 1.25rem;
+  gap: 1.1rem;
+}
+
+[data-theme-id="md3"] .theme-profile h1 {
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+[data-theme-id="md3"] .theme-profile .theme-username {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="md3"] .theme-profile .theme-bio {
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+[data-theme-id="md3"] .theme-meta a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: opacity var(--md3-transition);
+}
+
+[data-theme-id="md3"] .theme-meta a:hover {
+  opacity: 0.88;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+[data-theme-id="md3"] .theme-avatar {
+  border-width: 2px;
+  border-style: solid;
+  border-color: hsl(var(--border) / 0.5);
+  box-shadow: var(--theme-shadow);
+}
+
+[data-theme-id="md3"] .theme-avatar-fallback {
+  border-width: 2px;
+  border-style: solid;
+  border-color: hsl(var(--border) / 0.5);
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 500;
+}
+
+/* Links ≈ MD3 filled tonal / elevated buttons */
+[data-theme-id="md3"] .theme-links {
+  gap: 0.65rem;
+}
+
+[data-theme-id="md3"] a.theme-link {
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: var(--theme-link-radius);
+  /* tonal filled container (secondary-container feel) */
+  background: color-mix(in srgb, hsl(var(--primary)) 12%, hsl(var(--card)));
+  color: hsl(var(--card-foreground));
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  box-shadow: none;
+  transition:
+    background var(--md3-transition),
+    border-color var(--md3-transition),
+    box-shadow var(--md3-transition),
+    transform var(--md3-transition-fast),
+    color var(--md3-transition);
+}
+
+/* First link = filled primary (MD3 FAB/button hierarchy) */
+[data-theme-id="md3"] a.theme-link:first-child {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  box-shadow: var(--theme-shadow);
+}
+
+[data-theme-id="md3"] a.theme-link:first-child .theme-link-icon,
+[data-theme-id="md3"] a.theme-link:first-child .theme-link-external {
+  color: hsl(var(--primary-foreground));
+  opacity: 0.95;
+}
+
+[data-theme-id="md3"] a.theme-link:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 14%, hsl(var(--card)));
+  border-color: transparent;
+  box-shadow: var(--theme-shadow);
+  transform: translateY(-1px);
+  color: hsl(var(--card-foreground));
+}
+
+[data-theme-id="md3"] a.theme-link:first-child:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 88%, #000);
+  color: hsl(var(--primary-foreground));
+}
+
+[data-theme-id="md3"] a.theme-link:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+[data-theme-id="md3"] a.theme-link:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+[data-theme-id="md3"] a.theme-link .theme-link-icon {
+  color: hsl(var(--primary));
+  opacity: 0.95;
+  transition: color var(--md3-transition);
+}
+
+[data-theme-id="md3"] a.theme-link .theme-link-external {
+  opacity: 0.4;
+  transition: opacity var(--md3-transition);
+}
+
+[data-theme-id="md3"] a.theme-link:hover .theme-link-external {
+  opacity: 0.6;
+}
+
+[data-theme-id="md3"] .theme-footer {
+  font-family: var(--theme-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Toolbar: solid tonal, no glass */
+[data-theme-id="md3"] aside.theme-toolbar button,
+[data-theme-id="md3"] .theme-toolbar-btn {
+  border-radius: var(--theme-radius) !important;
+  border: 1px solid hsl(var(--border) / 0.55) !important;
+  box-shadow: var(--theme-shadow) !important;
+  background: hsl(var(--card)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  font-weight: 500;
+  transition:
+    background var(--md3-transition),
+    border-color var(--md3-transition),
+    box-shadow var(--md3-transition) !important;
+}
+
+[data-theme-id="md3"] aside.theme-toolbar button:hover,
+[data-theme-id="md3"] .theme-toolbar-btn:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 10%, hsl(var(--card))) !important;
+  border-color: hsl(var(--primary) / 0.45) !important;
+}

@@ -1,0 +1,13 @@
+{
+  "id": "minimal",
+  "name": "Minimal",
+  "nameZh": "极简",
+  "description": "Ultra-minimal — near-square corners, no shadows/borders, monochrome ink, tight spacing",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": false
+  }
+}

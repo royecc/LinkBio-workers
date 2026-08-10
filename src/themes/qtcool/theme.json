@@ -1,0 +1,13 @@
+{
+  "id": "qtcool",
+  "name": "QT Cool",
+  "nameZh": "晴辰酷",
+  "description": "Neo-brutal stickers — cream grid, 3px ink stroke, hard 5–8px offset shadow, yellow/orange pops, blue CTA",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": false
+  }
+}

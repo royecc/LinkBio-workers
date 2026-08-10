@@ -1,0 +1,228 @@
+// Scan src/icons/*.svg + meta.json → generate _registry.ts + sync public/icons/
+import {
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  unlinkSync,
+} from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const iconsDir = join(root, "src", "icons");
+const publicIconsDir = join(root, "public", "icons");
+const metaPath = join(iconsDir, "meta.json");
+const ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+function fail(msg) {
+  console.error("[build-icons] " + msg);
+  process.exit(1);
+}
+
+function titleize(id) {
+  return id
+    .split("-")
+    .map((part) => (part ? part[0].toUpperCase() + part.slice(1) : part))
+    .join(" ");
+}
+
+function loadMeta() {
+  if (!existsSync(metaPath)) {
+    return { fallbackId: "link", icons: {} };
+  }
+  let data;
+  try {
+    data = JSON.parse(readFileSync(metaPath, "utf8"));
+  } catch {
+    fail("meta.json: invalid JSON");
+  }
+  if (!data || typeof data !== "object") fail("meta.json: must be object");
+  const icons =
+    data.icons && typeof data.icons === "object" && !Array.isArray(data.icons)
+      ? data.icons
+      : {};
+  const fallbackId =
+    typeof data.fallbackId === "string" && data.fallbackId
+      ? data.fallbackId
+      : "link";
+  return { fallbackId, icons };
+}
+
+function normalizeSvg(raw, id) {
+  const svg = raw.replace(/^\uFEFF/, "").trim();
+  if (!svg) fail(id + ".svg: empty file");
+  if (!/<svg[\s>]/i.test(svg)) fail(id + ".svg: missing <svg> root");
+  // Light hygiene: strip scripts / external refs that would break offline masks
+  if (/<script[\s>]/i.test(svg)) fail(id + ".svg: <script> is not allowed");
+  if (/xlink:href\s*=\s*["']https?:/i.test(svg) || /\shref\s*=\s*["']https?:/i.test(svg)) {
+    fail(id + ".svg: external href is not allowed");
+  }
+  return svg.endsWith("\n") ? svg : svg + "\n";
+}
+
+if (!existsSync(iconsDir)) fail("missing src/icons/");
+
+const meta = loadMeta();
+const FALLBACK = meta.fallbackId;
+if (!ID_RE.test(FALLBACK)) fail('fallbackId must be kebab-case: "' + FALLBACK + '"');
+
+const svgFiles = readdirSync(iconsDir)
+  .filter((name) => name.endsWith(".svg") && !name.startsWith("_"))
+  .sort();
+
+if (!svgFiles.length) fail("no SVG files found under src/icons/");
+
+const manifests = [];
+const aliasToId = {};
+const seenIds = new Set();
+
+for (const fileName of svgFiles) {
+  const id = fileName.slice(0, -4);
+  if (!ID_RE.test(id)) {
+    fail(fileName + ': id must be kebab-case ("' + id + '")');
+  }
+  if (seenIds.has(id)) fail("duplicate icon id: " + id);
+  seenIds.add(id);
+
+  const svgPath = join(iconsDir, fileName);
+  const svg = normalizeSvg(readFileSync(svgPath, "utf8"), id);
+
+  const entry = meta.icons[id];
+  if (entry != null && (typeof entry !== "object" || Array.isArray(entry))) {
+    fail("meta.json icons." + id + ": must be object");
+  }
+
+  let label =
+    entry && typeof entry.label === "string" && entry.label.trim()
+      ? entry.label.trim()
+      : titleize(id);
+  let labelZh =
+    entry && typeof entry.labelZh === "string" && entry.labelZh.trim()
+      ? entry.labelZh.trim()
+      : label;
+
+  const aliases = [];
+  if (entry && Array.isArray(entry.aliases)) {
+    for (const a of entry.aliases) {
+      if (typeof a !== "string" || !a.trim()) {
+        fail("meta.json icons." + id + ".aliases: each alias must be non-empty string");
+      }
+      const alias = a.trim().toLowerCase();
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(alias)) {
+        fail("meta.json icons." + id + '.aliases: invalid alias "' + alias + '"');
+      }
+      if (alias === id) continue;
+      if (aliasToId[alias] && aliasToId[alias] !== id) {
+        fail(
+          'alias "' +
+            alias +
+            '" maps to both "' +
+            aliasToId[alias] +
+            '" and "' +
+            id +
+            '"',
+        );
+      }
+      aliasToId[alias] = id;
+      if (!aliases.includes(alias)) aliases.push(alias);
+    }
+  }
+
+  manifests.push({
+    id,
+    label,
+    labelZh,
+    file: "/icons/" + id + ".svg",
+    aliases: aliases.length ? aliases : undefined,
+    _svg: svg,
+  });
+}
+
+// meta keys without SVG → fail
+for (const key of Object.keys(meta.icons)) {
+  if (!seenIds.has(key)) {
+    fail('meta.json icons."' + key + '": no matching ' + key + ".svg");
+  }
+}
+
+// aliases must not shadow real icon ids
+for (const [alias, target] of Object.entries(aliasToId)) {
+  if (seenIds.has(alias) && alias !== target) {
+    fail('alias "' + alias + '" collides with real icon id');
+  }
+}
+
+if (!seenIds.has(FALLBACK)) {
+  fail('fallback icon "' + FALLBACK + '" is required (src/icons/' + FALLBACK + ".svg)");
+}
+
+// Strategy A: clear public/icons/*.svg then write normalized copies
+mkdirSync(publicIconsDir, { recursive: true });
+for (const name of readdirSync(publicIconsDir)) {
+  if (name.endsWith(".svg")) {
+    unlinkSync(join(publicIconsDir, name));
+  }
+}
+for (const m of manifests) {
+  const header =
+    "<!-- generated by scripts/build-icons.mjs from src/icons/" +
+    m.id +
+    ".svg — do not edit -->\n";
+  writeFileSync(join(publicIconsDir, m.id + ".svg"), header + m._svg, "utf8");
+}
+
+const body = JSON.stringify(
+  manifests.map((m) => {
+    const row = {
+      id: m.id,
+      label: m.label,
+      labelZh: m.labelZh,
+      file: m.file,
+    };
+    if (m.aliases && m.aliases.length) row.aliases = m.aliases;
+    return row;
+  }),
+  null,
+  2,
+);
+
+const aliasesBody = JSON.stringify(aliasToId, null, 2);
+
+const registryTs =
+  "/* AUTO-GENERATED by scripts/build-icons.mjs — do not edit by hand */\n" +
+  'import type { IconManifest, IconListItem } from "./_types";\n' +
+  'import { FALLBACK_ICON_ID } from "./_types";\n\n' +
+  "export const ICON_MANIFESTS: IconManifest[] = " +
+  body +
+  " as IconManifest[];\n\n" +
+  "export const ICON_IDS: string[] = ICON_MANIFESTS.map((m) => m.id);\n\n" +
+  "export const ICON_ALIASES: Record<string, string> = " +
+  aliasesBody +
+  ";\n\n" +
+  "export function listIcons(): IconListItem[] {\n" +
+  "  return ICON_MANIFESTS.map((m) => ({\n" +
+  "    id: m.id,\n" +
+  "    label: m.label,\n" +
+  "    labelZh: m.labelZh,\n" +
+  "    file: m.file,\n" +
+  "  }));\n" +
+  "}\n\n" +
+  "export function getIcon(id: string | undefined | null): IconManifest | null {\n" +
+  "  if (!id) return null;\n" +
+  "  const found = ICON_MANIFESTS.find((m) => m.id === id);\n" +
+  "  return found ?? null;\n" +
+  "}\n\n" +
+  "export { FALLBACK_ICON_ID };\n";
+
+writeFileSync(join(iconsDir, "_registry.ts"), registryTs, "utf8");
+
+console.log(
+  "[build-icons] ok — " +
+    manifests.length +
+    " icon(s), " +
+    Object.keys(aliasToId).length +
+    " alias(es), fallback=" +
+    FALLBACK,
+);

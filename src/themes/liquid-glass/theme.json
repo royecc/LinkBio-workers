@@ -1,0 +1,13 @@
+{
+  "id": "liquid-glass",
+  "name": "Liquid Glass",
+  "nameZh": "液态玻璃",
+  "description": "Liquid glassmorphism — high blur, translucent panels, top highlights, cool cyan-blue, fluid hover",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": true,
+    "gradientBg": true,
+    "customFonts": true
+  }
+}

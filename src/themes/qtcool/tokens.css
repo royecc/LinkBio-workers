@@ -1,0 +1,368 @@
+/*
+ * Theme: qtcool — neo-brutalism inspired by qt.cool/projects.
+ *
+ * Light: cream canvas + grid · white cards · 2–3px near-black stroke
+ *        hard shadow 4px 4px 0 · yellow/orange accents · primary #007AFF
+ * Dark:  charcoal canvas · soft cream type · same hard geometry
+ *
+ * Variable names align with existing theme packs (see _types.ts ThemeTokenVars).
+ */
+
+[data-theme-id="qtcool"] {
+  --theme-font: ui-rounded, "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --theme-radius: 1.25rem;
+  --theme-card-radius: 1.5rem;
+  --theme-link-radius: 1.15rem;
+  /* Hard offset shadow — exaggerated neo-brutal (no blur) */
+  --theme-shadow: 5px 5px 0 #1a1a1a;
+  --theme-border-opacity: 1;
+  /* Punchy CTA blue #007AFF */
+  --primary: 211 100% 50%;
+  --ring: 211 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  /* Sticker palette: warm yellow / orange */
+  --qtcool-ink: 0 0% 10%;
+  --qtcool-cream: 42 45% 94%;
+  --qtcool-yellow: 48 96% 53%;
+  --qtcool-orange: 28 95% 55%;
+  --qtcool-border-w: 3px;
+  --qtcool-shadow: 5px 5px 0 hsl(var(--qtcool-ink));
+  --qtcool-shadow-hover: 8px 8px 0 hsl(var(--qtcool-ink));
+  --qtcool-shadow-active: 2px 2px 0 hsl(var(--qtcool-ink));
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+  --theme-content-max: 27rem;
+}
+
+/* ── Light ──────────────────────────────────────────────────── */
+[data-theme-id="qtcool"][data-theme="light"] {
+  /* cream #F7F1E3-ish */
+  --background: 42 45% 94%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --secondary: 42 30% 90%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 42 25% 90%;
+  --muted-foreground: 0 0% 32%;
+  --accent: 48 90% 90%;
+  --accent-foreground: 0 0% 10%;
+  --border: 0 0% 10%;
+  --input: 0 0% 10%;
+  --primary: 211 100% 50%;
+  --ring: 211 100% 50%;
+  --destructive: 0 80% 48%;
+  --theme-shadow: 5px 5px 0 #1a1a1a;
+  --qtcool-ink: 0 0% 10%;
+  --qtcool-shadow: 5px 5px 0 #1a1a1a;
+  --qtcool-shadow-hover: 8px 8px 0 #1a1a1a;
+  --qtcool-shadow-active: 2px 2px 0 #1a1a1a;
+}
+
+/* ── Dark ───────────────────────────────────────────────────── */
+[data-theme-id="qtcool"][data-theme="dark"] {
+  /* deep charcoal + cream ink geometry */
+  --background: 240 8% 6%;
+  --foreground: 42 35% 94%;
+  --card: 240 6% 10%;
+  --card-foreground: 42 35% 94%;
+  --popover: 240 6% 10%;
+  --popover-foreground: 42 35% 94%;
+  --secondary: 240 5% 14%;
+  --secondary-foreground: 42 35% 94%;
+  --muted: 240 5% 14%;
+  --muted-foreground: 40 14% 72%;
+  --accent: 28 45% 16%;
+  --accent-foreground: 42 35% 94%;
+  /* cream stroke on charcoal — sticker pop */
+  --border: 42 30% 90%;
+  --input: 42 30% 90%;
+  --primary: 211 100% 58%;
+  --ring: 211 100% 58%;
+  --destructive: 0 72% 55%;
+  --theme-shadow: 5px 5px 0 #f0e6d2;
+  --qtcool-ink: 42 30% 90%;
+  --qtcool-shadow: 5px 5px 0 #f0e6d2;
+  --qtcool-shadow-hover: 8px 8px 0 #f0e6d2;
+  --qtcool-shadow-active: 2px 2px 0 #f0e6d2;
+}
+
+/* ── System (default dark pack; light via media) ────────────── */
+[data-theme-id="qtcool"][data-theme="system"] {
+  --background: 240 6% 8%;
+  --foreground: 42 30% 94%;
+  --card: 240 5% 12%;
+  --card-foreground: 42 30% 94%;
+  --popover: 240 5% 12%;
+  --popover-foreground: 42 30% 94%;
+  --secondary: 240 5% 16%;
+  --secondary-foreground: 42 30% 94%;
+  --muted: 240 5% 16%;
+  --muted-foreground: 40 10% 70%;
+  --accent: 28 40% 18%;
+  --accent-foreground: 42 30% 94%;
+  --border: 42 25% 88%;
+  --input: 42 25% 88%;
+  --primary: 211 100% 55%;
+  --ring: 211 100% 55%;
+  --theme-shadow: 5px 5px 0 #f0e6d2;
+  --qtcool-ink: 42 30% 90%;
+  --qtcool-shadow: 5px 5px 0 #f0e6d2;
+  --qtcool-shadow-hover: 8px 8px 0 #f0e6d2;
+  --qtcool-shadow-active: 2px 2px 0 #f0e6d2;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="qtcool"][data-theme="system"] {
+    --background: 42 45% 94%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --secondary: 42 30% 90%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 42 25% 90%;
+    --muted-foreground: 0 0% 32%;
+    --accent: 48 90% 90%;
+    --accent-foreground: 0 0% 10%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --primary: 211 100% 50%;
+    --ring: 211 100% 50%;
+    --theme-shadow: 5px 5px 0 #1a1a1a;
+    --qtcool-ink: 0 0% 10%;
+    --qtcool-shadow: 5px 5px 0 #1a1a1a;
+    --qtcool-shadow-hover: 8px 8px 0 #1a1a1a;
+    --qtcool-shadow-active: 2px 2px 0 #1a1a1a;
+  }
+}
+
+/* ── Page: cream canvas + subtle grid ───────────────────────── */
+
+[data-theme-id="qtcool"] .theme-page {
+  position: relative;
+  isolation: isolate;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  /* Grid: soft lines on cream / charcoal */
+  background-image:
+    linear-gradient(hsl(var(--qtcool-ink) / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--qtcool-ink) / 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center top;
+}
+
+[data-theme-id="qtcool"] .theme-page--gradient {
+  background-image:
+    linear-gradient(hsl(var(--qtcool-ink) / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--qtcool-ink) / 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Optional geometry — desktop only, very subtle */
+@media (min-width: 768px) {
+  [data-theme-id="qtcool"] .theme-page::before,
+  [data-theme-id="qtcool"] .theme-page::after {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    border: var(--qtcool-border-w) solid hsl(var(--qtcool-ink) / 0.12);
+    border-radius: 1.25rem;
+    box-shadow: 3px 3px 0 hsl(var(--qtcool-yellow) / 0.35);
+  }
+
+  [data-theme-id="qtcool"] .theme-page::before {
+    width: 4.5rem;
+    height: 4.5rem;
+    top: 12%;
+    left: 6%;
+    background: hsl(var(--qtcool-yellow) / 0.15);
+    border-radius: 9999px;
+  }
+
+  [data-theme-id="qtcool"] .theme-page::after {
+    width: 3.25rem;
+    height: 3.25rem;
+    bottom: 14%;
+    right: 7%;
+    background: hsl(var(--qtcool-orange) / 0.12);
+    transform: rotate(12deg);
+  }
+
+  [data-theme-id="qtcool"] .theme-stack {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 767.98px) {
+  [data-theme-id="qtcool"] .theme-page::before,
+  [data-theme-id="qtcool"] .theme-page::after {
+    content: none;
+    display: none;
+  }
+}
+
+[data-theme-id="qtcool"] .theme-stack {
+  max-width: var(--theme-content-max, 27rem);
+  gap: 1.5rem;
+}
+
+/* Card shell: white surface + thick ink border + hard shadow */
+[data-theme-id="qtcool"] .theme-card {
+  border-radius: var(--theme-card-radius);
+  background: hsl(var(--card));
+  border: var(--qtcool-border-w) solid hsl(var(--border));
+  box-shadow: var(--qtcool-shadow);
+  padding: 1.25rem 1rem 1.35rem;
+  gap: 1.25rem;
+}
+
+/* ── Profile ────────────────────────────────────────────────── */
+
+[data-theme-id="qtcool"] .theme-profile h1 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.6rem, 4.5vw, 2rem);
+  line-height: 1.15;
+}
+
+[data-theme-id="qtcool"] .theme-profile .theme-username {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="qtcool"] .theme-profile .theme-bio {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+[data-theme-id="qtcool"] .theme-meta a {
+  color: hsl(var(--primary));
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+[data-theme-id="qtcool"] .theme-avatar {
+  border: var(--qtcool-border-w) solid hsl(var(--border)) !important;
+  box-shadow: var(--qtcool-shadow);
+  background: hsl(var(--card));
+}
+
+[data-theme-id="qtcool"] .theme-avatar-fallback {
+  border: var(--qtcool-border-w) solid hsl(var(--border)) !important;
+  box-shadow: var(--qtcool-shadow);
+  background: hsl(var(--qtcool-yellow));
+  color: hsl(var(--qtcool-ink));
+  font-weight: 800;
+}
+
+/* ── Link bars: brutal card buttons ─────────────────────────── */
+
+[data-theme-id="qtcool"] .theme-links {
+  gap: 0.85rem;
+}
+
+[data-theme-id="qtcool"] a.theme-link {
+  justify-content: flex-start;
+  min-height: 3.15rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--theme-link-radius);
+  border: var(--qtcool-border-w) solid hsl(var(--border));
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  box-shadow: var(--qtcool-shadow);
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease,
+    background 0.12s ease;
+}
+
+/* Primary-ish first CTA in solid blue */
+[data-theme-id="qtcool"] a.theme-link:first-child {
+  background: hsl(var(--primary));
+  color: #fff;
+  border-color: hsl(var(--qtcool-ink));
+}
+
+[data-theme-id="qtcool"] a.theme-link:first-child .theme-link-icon,
+[data-theme-id="qtcool"] a.theme-link:first-child .theme-link-external {
+  color: #fff;
+  opacity: 0.95;
+}
+
+[data-theme-id="qtcool"] a.theme-link:hover {
+  box-shadow: var(--qtcool-shadow-hover);
+  transform: translate(-2px, -2px);
+  background: color-mix(in srgb, hsl(var(--card)) 88%, hsl(var(--qtcool-yellow)));
+}
+
+[data-theme-id="qtcool"] a.theme-link:first-child:hover {
+  background: color-mix(in srgb, hsl(var(--primary)) 88%, #000);
+  color: #fff;
+  box-shadow: var(--qtcool-shadow-hover);
+  transform: translate(-2px, -2px);
+}
+
+[data-theme-id="qtcool"] a.theme-link:active {
+  box-shadow: var(--qtcool-shadow-active);
+  transform: translate(3px, 3px);
+}
+
+[data-theme-id="qtcool"] a.theme-link:focus-visible {
+  outline: 3px solid hsl(var(--qtcool-orange));
+  outline-offset: 2px;
+}
+
+[data-theme-id="qtcool"] a.theme-link .theme-link-icon {
+  color: hsl(var(--primary));
+  opacity: 1;
+}
+
+[data-theme-id="qtcool"] a.theme-link .theme-link-external {
+  opacity: 0.45;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+[data-theme-id="qtcool"] .theme-footer {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: hsl(var(--muted-foreground));
+}
+
+/* ── Toolbar: chunky pills ──────────────────────────────────── */
+
+[data-theme-id="qtcool"] aside.theme-toolbar button,
+[data-theme-id="qtcool"] .theme-toolbar-btn {
+  border-radius: 9999px !important;
+  border: var(--qtcool-border-w) solid hsl(var(--border)) !important;
+  box-shadow: 3px 3px 0 hsl(var(--qtcool-ink)) !important;
+  background: hsl(var(--card)) !important;
+  font-weight: 700;
+}
+
+[data-theme-id="qtcool"] aside.theme-toolbar button:hover,
+[data-theme-id="qtcool"] .theme-toolbar-btn:hover {
+  box-shadow: 4px 4px 0 hsl(var(--qtcool-ink)) !important;
+  transform: translate(-1px, -1px);
+}
+
+[data-theme-id="qtcool"] aside.theme-toolbar button:active,
+[data-theme-id="qtcool"] .theme-toolbar-btn:active {
+  box-shadow: 1px 1px 0 hsl(var(--qtcool-ink)) !important;
+  transform: translate(2px, 2px);
+}

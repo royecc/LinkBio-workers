@@ -1,0 +1,338 @@
+/*
+ * Theme: nodeseek — modern Chinese tech-forum aesthetic.
+ *
+ * Light: cool-gray canvas + soft teal grid · white solid cards · 1px borders
+ * Dark:  deep cool-gray · weaker grid · elevated solid surfaces
+ * Accent: light #0B6E99 · dark slightly brighter cyan-teal
+ *
+ * Links = forum list rows (soft elevation, left accent on hover).
+ * Not neo-brutal: no hard offset shadows / thick ink strokes.
+ *
+ * Vars align with existing packs (_types.ts ThemeTokenVars + globals tokens).
+ */
+
+[data-theme-id="nodeseek"] {
+  --theme-font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Noto Sans SC",
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --theme-radius: 12px;
+  --theme-card-radius: 12px;
+  --theme-link-radius: 12px;
+  --theme-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --theme-border-opacity: 1;
+  /* #0B6E99 ≈ hsl(199 87% 32%) */
+  --primary: 199 87% 32%;
+  --ring: 199 87% 32%;
+  --primary-foreground: 0 0% 100%;
+  --theme-content-max: 28rem;
+
+  /* Forum-specific (local helpers, not required by core) */
+  --ns-grid-line: rgba(11, 110, 153, 0.11);
+  --ns-grid-size: 22px;
+  --ns-row-hover: rgba(11, 110, 153, 0.08);
+  --ns-accent-bar: hsl(199 87% 32%);
+  --ns-transition: 160ms ease;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+/* ── Light ──────────────────────────────────────────────────── */
+[data-theme-id="nodeseek"][data-theme="light"] {
+  /* cool gray page #f0f2f5-ish */
+  --background: 210 16% 95%;
+  --foreground: 215 25% 14%;
+  /* solid white surface */
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 14%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 25% 14%;
+  --secondary: 210 14% 93%;
+  --secondary-foreground: 215 25% 14%;
+  --muted: 210 14% 93%;
+  --muted-foreground: 215 10% 42%;
+  --accent: 199 40% 94%;
+  --accent-foreground: 199 87% 28%;
+  /* hairline cool gray border */
+  --border: 214 16% 86%;
+  --input: 214 16% 86%;
+  --primary: 199 87% 32%;
+  --ring: 199 87% 32%;
+  --destructive: 0 72% 48%;
+  --theme-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 14px rgba(15, 23, 42, 0.05);
+  --ns-grid-line: rgba(11, 110, 153, 0.12);
+  --ns-row-hover: rgba(11, 110, 153, 0.08);
+  --ns-accent-bar: #0b6e99;
+}
+
+/* ── Dark ───────────────────────────────────────────────────── */
+[data-theme-id="nodeseek"][data-theme="dark"] {
+  /* deep cool slate */
+  --background: 220 14% 9%;
+  --foreground: 210 20% 96%;
+  /* solid elevated panel */
+  --card: 220 12% 13%;
+  --card-foreground: 210 20% 96%;
+  --popover: 220 12% 13%;
+  --popover-foreground: 210 20% 96%;
+  --secondary: 220 11% 16%;
+  --secondary-foreground: 210 20% 96%;
+  --muted: 220 11% 16%;
+  --muted-foreground: 215 12% 62%;
+  --accent: 199 28% 16%;
+  --accent-foreground: 195 70% 72%;
+  --border: 220 10% 20%;
+  --input: 220 10% 20%;
+  /* brighter teal-cyan for dark */
+  --primary: 196 72% 52%;
+  --ring: 196 72% 52%;
+  --destructive: 0 65% 55%;
+  --theme-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.28);
+  --ns-grid-line: rgba(100, 180, 210, 0.045);
+  --ns-row-hover: rgba(80, 170, 210, 0.08);
+  --ns-accent-bar: hsl(196 72% 52%);
+}
+
+/* ── System (default dark; light via prefers) ───────────────── */
+[data-theme-id="nodeseek"][data-theme="system"] {
+  --background: 220 14% 9%;
+  --foreground: 210 20% 96%;
+  --card: 220 12% 13%;
+  --card-foreground: 210 20% 96%;
+  --popover: 220 12% 13%;
+  --popover-foreground: 210 20% 96%;
+  --secondary: 220 11% 16%;
+  --secondary-foreground: 210 20% 96%;
+  --muted: 220 11% 16%;
+  --muted-foreground: 215 12% 62%;
+  --accent: 199 28% 16%;
+  --accent-foreground: 195 70% 72%;
+  --border: 220 10% 20%;
+  --input: 220 10% 20%;
+  --primary: 196 72% 52%;
+  --ring: 196 72% 52%;
+  --theme-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.28);
+  --ns-grid-line: rgba(100, 180, 210, 0.045);
+  --ns-row-hover: rgba(80, 170, 210, 0.08);
+  --ns-accent-bar: hsl(196 72% 52%);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="nodeseek"][data-theme="system"] {
+    --background: 210 16% 95%;
+    --foreground: 215 25% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 14%;
+    --secondary: 210 14% 93%;
+    --secondary-foreground: 215 25% 14%;
+    --muted: 210 14% 93%;
+    --muted-foreground: 215 10% 42%;
+    --accent: 199 40% 94%;
+    --accent-foreground: 199 87% 28%;
+    --border: 214 16% 86%;
+    --input: 214 16% 86%;
+    --primary: 199 87% 32%;
+    --ring: 199 87% 32%;
+    --theme-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 14px rgba(15, 23, 42, 0.05);
+    --ns-grid-line: rgba(11, 110, 153, 0.075);
+    --ns-row-hover: rgba(11, 110, 153, 0.065);
+    --ns-accent-bar: #0b6e99;
+  }
+}
+
+/* ── Page: solid cool-gray + faint grid (background only) ───── */
+
+[data-theme-id="nodeseek"] .theme-page {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image:
+    linear-gradient(var(--ns-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ns-grid-line) 1px, transparent 1px);
+  background-size: var(--ns-grid-size) var(--ns-grid-size);
+  background-position: center top;
+}
+
+[data-theme-id="nodeseek"] .theme-page--gradient {
+  /* Keep grid; no radial brand glow */
+  background-image:
+    linear-gradient(var(--ns-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ns-grid-line) 1px, transparent 1px);
+  background-size: var(--ns-grid-size) var(--ns-grid-size);
+}
+
+[data-theme-id="nodeseek"] .theme-stack {
+  max-width: var(--theme-content-max, 28rem);
+  gap: 1.25rem;
+}
+
+/* Solid opaque surface — forum panel */
+[data-theme-id="nodeseek"] .theme-card {
+  border-radius: var(--theme-card-radius);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--theme-shadow);
+  padding: 1.15rem 1rem 1.25rem;
+  gap: 1.1rem;
+}
+
+/* ── Profile ────────────────────────────────────────────────── */
+
+[data-theme-id="nodeseek"] .theme-profile h1 {
+  font-weight: 650;
+  font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+[data-theme-id="nodeseek"] .theme-profile .theme-username {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="nodeseek"] .theme-profile .theme-bio {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="nodeseek"] .theme-meta {
+  font-size: 0.78rem;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="nodeseek"] .theme-meta a {
+  color: hsl(var(--primary));
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--ns-transition), opacity var(--ns-transition);
+}
+
+[data-theme-id="nodeseek"] .theme-meta a:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+[data-theme-id="nodeseek"] .theme-avatar {
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--card));
+}
+
+[data-theme-id="nodeseek"] .theme-avatar-fallback {
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: var(--theme-shadow);
+  background: hsl(var(--primary));
+  color: #fff;
+  font-weight: 650;
+}
+
+/* ── Link rows: forum list ──────────────────────────────────── */
+
+[data-theme-id="nodeseek"] .theme-links {
+  gap: 0.5rem;
+}
+
+[data-theme-id="nodeseek"] a.theme-link {
+  position: relative;
+  justify-content: flex-start;
+  min-height: 2.85rem;
+  padding: 0.7rem 0.95rem 0.7rem 1rem;
+  border-radius: var(--theme-link-radius);
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition:
+    background-color var(--ns-transition),
+    border-color var(--ns-transition),
+    box-shadow var(--ns-transition),
+    color var(--ns-transition),
+    transform var(--ns-transition);
+}
+
+/* Left accent rail — always visible (forum post row), stronger on hover */
+[data-theme-id="nodeseek"] a.theme-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--ns-accent-bar);
+  opacity: 0.55;
+  transition: opacity var(--ns-transition), width var(--ns-transition);
+}
+
+[data-theme-id="nodeseek"] a.theme-link:hover {
+  background: color-mix(in srgb, hsl(var(--card)) 88%, var(--ns-row-hover));
+  border-color: color-mix(in srgb, hsl(var(--border)) 55%, var(--ns-accent-bar));
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+  color: hsl(var(--foreground));
+}
+
+[data-theme-id="nodeseek"] a.theme-link:hover::before {
+  opacity: 1;
+  width: 4px;
+}
+
+[data-theme-id="nodeseek"] a.theme-link:active {
+  transform: translateY(0.5px);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme-id="nodeseek"] a.theme-link:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+[data-theme-id="nodeseek"] a.theme-link .theme-link-icon {
+  color: hsl(var(--primary));
+  opacity: 0.9;
+  transition: color var(--ns-transition);
+}
+
+[data-theme-id="nodeseek"] a.theme-link .theme-link-external {
+  opacity: 0.35;
+  transition: opacity var(--ns-transition);
+}
+
+[data-theme-id="nodeseek"] a.theme-link:hover .theme-link-external {
+  opacity: 0.55;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+[data-theme-id="nodeseek"] .theme-footer {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0;
+}
+
+/* ── Toolbar ────────────────────────────────────────────────── */
+
+[data-theme-id="nodeseek"] aside.theme-toolbar button,
+[data-theme-id="nodeseek"] .theme-toolbar-btn {
+  border-radius: 10px !important;
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+  background: hsl(var(--card)) !important;
+  font-weight: 500;
+  transition:
+    background-color var(--ns-transition),
+    border-color var(--ns-transition),
+    box-shadow var(--ns-transition) !important;
+}
+
+[data-theme-id="nodeseek"] aside.theme-toolbar button:hover,
+[data-theme-id="nodeseek"] .theme-toolbar-btn:hover {
+  background: color-mix(in srgb, hsl(var(--card)) 90%, var(--ns-row-hover)) !important;
+  border-color: color-mix(in srgb, hsl(var(--border)) 60%, var(--ns-accent-bar)) !important;
+}

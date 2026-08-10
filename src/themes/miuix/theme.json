@@ -1,0 +1,13 @@
+{
+  "id": "miuix",
+  "name": "Miuix",
+  "nameZh": "小米 HyperOS",
+  "description": "HyperOS / Miuix — exclusive #3482FF, large squircle radii, dense clean surfaces, soft blue elevation",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": true,
+    "gradientBg": false,
+    "customFonts": false
+  }
+}

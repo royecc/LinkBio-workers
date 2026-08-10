@@ -1,0 +1,13 @@
+{
+  "id": "aurora",
+  "name": "Aurora",
+  "nameZh": "极光",
+  "description": "Northern lights default — cool teal–indigo primary, soft radial aurora canvas, dreamy elevation",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": true,
+    "customFonts": false
+  }
+}

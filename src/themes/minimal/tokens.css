@@ -1,0 +1,205 @@
+/*
+ * Theme: minimal — “almost no design”.
+ * DNA: near-square, no shadow, no chrome, monochrome accent, light type weight.
+ */
+
+[data-theme-id="minimal"] {
+  --theme-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "PingFang SC", "Microsoft YaHei UI", sans-serif;
+  --theme-radius: 0.25rem; /* 4px */
+  --theme-card-radius: 0.35rem;
+  --theme-link-radius: 0.25rem;
+  --theme-shadow: none;
+  --theme-border-opacity: 0;
+  --theme-content-max: 24rem;
+  /* monochrome slate */
+  --primary: 240 4% 28%;
+  --ring: 240 4% 28%;
+  --primary-foreground: 0 0% 100%;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+[data-theme-id="minimal"][data-theme="light"] {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --secondary: 0 0% 97%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 0 0% 97%;
+  --muted-foreground: 0 0% 42%;
+  --accent: 0 0% 96%;
+  --accent-foreground: 0 0% 8%;
+  --border: 0 0% 92%;
+  --input: 0 0% 92%;
+  --primary: 0 0% 18%;
+  --ring: 0 0% 18%;
+  --theme-shadow: none;
+}
+
+[data-theme-id="minimal"][data-theme="dark"] {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 4%;
+  --card-foreground: 0 0% 96%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 0 0% 96%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 58%;
+  --accent: 0 0% 12%;
+  --accent-foreground: 0 0% 96%;
+  --border: 0 0% 14%;
+  --input: 0 0% 14%;
+  --primary: 0 0% 82%;
+  --ring: 0 0% 82%;
+  --theme-shadow: none;
+}
+
+[data-theme-id="minimal"][data-theme="system"] {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 4%;
+  --card-foreground: 0 0% 96%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 0 0% 96%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 58%;
+  --accent: 0 0% 12%;
+  --accent-foreground: 0 0% 96%;
+  --border: 0 0% 14%;
+  --input: 0 0% 14%;
+  --primary: 0 0% 82%;
+  --ring: 0 0% 82%;
+  --theme-shadow: none;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="minimal"][data-theme="system"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 8%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 8%;
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+    --primary: 0 0% 18%;
+    --ring: 0 0% 18%;
+  }
+}
+
+[data-theme-id="minimal"] .theme-page {
+  background: hsl(var(--background));
+  background-image: none;
+  color: hsl(var(--foreground));
+}
+
+[data-theme-id="minimal"] .theme-page--gradient {
+  background-image: none;
+}
+
+[data-theme-id="minimal"] .theme-stack {
+  max-width: var(--theme-content-max, 24rem);
+  gap: 1rem;
+}
+
+[data-theme-id="minimal"] .theme-card {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  gap: 0.85rem;
+  border-radius: 0;
+}
+
+[data-theme-id="minimal"] .theme-profile h1 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+[data-theme-id="minimal"] .theme-profile .theme-username,
+[data-theme-id="minimal"] .theme-profile .theme-bio {
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
+}
+
+[data-theme-id="minimal"] .theme-avatar {
+  border-width: 0 !important;
+  box-shadow: none !important;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+[data-theme-id="minimal"] .theme-avatar-fallback {
+  border-width: 0 !important;
+  box-shadow: none !important;
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  font-weight: 500;
+}
+
+[data-theme-id="minimal"] .theme-links {
+  gap: 0.35rem;
+}
+
+[data-theme-id="minimal"] a.theme-link {
+  border: none;
+  border-radius: var(--theme-link-radius);
+  background: transparent;
+  box-shadow: none !important;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  min-height: 2.65rem;
+  padding: 0.55rem 0.35rem;
+  color: hsl(var(--foreground));
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+[data-theme-id="minimal"] a.theme-link:hover {
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  box-shadow: none !important;
+  transform: none;
+}
+
+[data-theme-id="minimal"] a.theme-link .theme-link-icon {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.85;
+}
+
+[data-theme-id="minimal"] a.theme-link .theme-link-external {
+  opacity: 0.25;
+}
+
+[data-theme-id="minimal"] .theme-footer {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+[data-theme-id="minimal"] aside.theme-toolbar button,
+[data-theme-id="minimal"] .theme-toolbar-btn {
+  border-radius: 0.25rem !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: hsl(var(--secondary)) !important;
+  font-weight: 400;
+  backdrop-filter: none !important;
+}

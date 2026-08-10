@@ -1,0 +1,13 @@
+{
+  "id": "rin",
+  "name": "Rin",
+  "nameZh": "Rin",
+  "description": "openRin/Rin default UI — vibrant rose accent #FC466B, clean neutral surfaces (#f5f5f5 / #1c1c1e), soft shadows, modern edge-native blog aesthetic.",
+  "version": 1,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": false
+  }
+}

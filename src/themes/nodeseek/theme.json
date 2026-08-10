@@ -1,0 +1,13 @@
+{
+  "id": "nodeseek",
+  "name": "NodeSeek",
+  "nameZh": "NodeSeek",
+  "description": "Chinese tech-forum rows — cool-gray grid, solid cards, teal accent bar on every link, CJK system fonts",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": false
+  }
+}

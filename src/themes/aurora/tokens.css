@@ -1,0 +1,190 @@
+/*
+ * Theme: aurora — “northern lights” default (not plain SaaS indigo).
+ * DNA: cool teal–violet primary + soft multi-stop radial glow + dreamy shadow.
+ * Orthogonal to data-theme light|dark|system. Fallback pack id.
+ */
+
+[data-theme-id="aurora"] {
+  --theme-font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --theme-radius: 0.9rem;
+  --theme-card-radius: 1rem;
+  --theme-link-radius: 1rem;
+  --theme-shadow: 0 18px 48px rgba(56, 80, 160, 0.14), 0 4px 14px rgba(0, 0, 0, 0.06);
+  --theme-border-opacity: 0.9;
+  --theme-content-max: 28rem;
+  /* cool indigo-cyan (not identical to hono pure indigo) */
+  --primary: 232 78% 58%;
+  --ring: 232 78% 58%;
+  --primary-foreground: 0 0% 100%;
+
+  --au-glow-a: rgba(99, 140, 255, 0.22);
+  --au-glow-b: rgba(56, 189, 180, 0.14);
+  --au-glow-c: rgba(167, 139, 250, 0.12);
+  --au-transition: 160ms ease;
+
+  font-family: var(--theme-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Light ──────────────────────────────────────────────────── */
+[data-theme-id="aurora"][data-theme="light"] {
+  --background: 230 40% 98%;
+  --foreground: 232 28% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 232 28% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 232 28% 12%;
+  --secondary: 230 28% 95%;
+  --secondary-foreground: 232 28% 12%;
+  --muted: 230 22% 94%;
+  --muted-foreground: 230 10% 42%;
+  --accent: 232 60% 95%;
+  --accent-foreground: 232 60% 36%;
+  --border: 230 18% 90%;
+  --input: 230 18% 90%;
+  --primary: 232 78% 54%;
+  --ring: 232 78% 54%;
+  --theme-shadow: 0 18px 48px rgba(80, 100, 200, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --au-glow-a: rgba(99, 140, 255, 0.2);
+  --au-glow-b: rgba(45, 200, 180, 0.14);
+  --au-glow-c: rgba(180, 140, 255, 0.12);
+}
+
+/* ── Dark ───────────────────────────────────────────────────── */
+[data-theme-id="aurora"][data-theme="dark"] {
+  --background: 235 28% 6%;
+  --foreground: 220 20% 96%;
+  --card: 235 22% 10%;
+  --card-foreground: 220 20% 96%;
+  --popover: 235 22% 10%;
+  --popover-foreground: 220 20% 96%;
+  --secondary: 235 18% 14%;
+  --secondary-foreground: 220 20% 96%;
+  --muted: 235 16% 14%;
+  --muted-foreground: 230 12% 64%;
+  --accent: 232 30% 16%;
+  --accent-foreground: 210 90% 78%;
+  --border: 235 14% 18%;
+  --input: 235 14% 18%;
+  --primary: 220 90% 68%;
+  --ring: 220 90% 68%;
+  --theme-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 140, 255, 0.08);
+  --au-glow-a: rgba(99, 140, 255, 0.28);
+  --au-glow-b: rgba(45, 200, 180, 0.12);
+  --au-glow-c: rgba(167, 139, 250, 0.16);
+}
+
+/* ── System ─────────────────────────────────────────────────── */
+[data-theme-id="aurora"][data-theme="system"] {
+  --background: 235 28% 6%;
+  --foreground: 220 20% 96%;
+  --card: 235 22% 10%;
+  --card-foreground: 220 20% 96%;
+  --popover: 235 22% 10%;
+  --popover-foreground: 220 20% 96%;
+  --secondary: 235 18% 14%;
+  --secondary-foreground: 220 20% 96%;
+  --muted: 235 16% 14%;
+  --muted-foreground: 230 12% 64%;
+  --accent: 232 30% 16%;
+  --accent-foreground: 210 90% 78%;
+  --border: 235 14% 18%;
+  --input: 235 14% 18%;
+  --primary: 220 90% 68%;
+  --ring: 220 90% 68%;
+  --theme-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 140, 255, 0.08);
+  --au-glow-a: rgba(99, 140, 255, 0.28);
+  --au-glow-b: rgba(45, 200, 180, 0.12);
+  --au-glow-c: rgba(167, 139, 250, 0.16);
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme-id="aurora"][data-theme="system"] {
+    --background: 230 40% 98%;
+    --foreground: 232 28% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 232 28% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 232 28% 12%;
+    --secondary: 230 28% 95%;
+    --secondary-foreground: 232 28% 12%;
+    --muted: 230 22% 94%;
+    --muted-foreground: 230 10% 42%;
+    --accent: 232 60% 95%;
+    --accent-foreground: 232 60% 36%;
+    --border: 230 18% 90%;
+    --input: 230 18% 90%;
+    --primary: 232 78% 54%;
+    --ring: 232 78% 54%;
+    --theme-shadow: 0 18px 48px rgba(80, 100, 200, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+    --au-glow-a: rgba(99, 140, 255, 0.2);
+    --au-glow-b: rgba(45, 200, 180, 0.14);
+    --au-glow-c: rgba(180, 140, 255, 0.12);
+  }
+}
+
+/* Multi-stop aurora canvas (always — DNA, not optional chrome) */
+[data-theme-id="aurora"] .theme-page {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image:
+    radial-gradient(ellipse 85% 55% at 50% -18%, var(--au-glow-a), transparent 58%),
+    radial-gradient(ellipse 50% 40% at 12% 30%, var(--au-glow-b), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 88% 20%, var(--au-glow-c), transparent 50%);
+  background-repeat: no-repeat;
+}
+
+[data-theme-id="aurora"] .theme-page--gradient {
+  background-image:
+    radial-gradient(ellipse 85% 55% at 50% -18%, var(--au-glow-a), transparent 58%),
+    radial-gradient(ellipse 50% 40% at 12% 30%, var(--au-glow-b), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 88% 20%, var(--au-glow-c), transparent 50%);
+}
+
+[data-theme-id="aurora"] .theme-card {
+  border-radius: var(--theme-card-radius);
+  background: hsl(var(--card) / 0.92);
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--theme-shadow);
+  padding: 1.15rem 1rem 1.25rem;
+  gap: 1.1rem;
+}
+
+[data-theme-id="aurora"] .theme-profile h1 {
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+[data-theme-id="aurora"] .theme-meta a {
+  color: hsl(var(--primary));
+  transition: opacity var(--au-transition);
+}
+
+[data-theme-id="aurora"] a.theme-link {
+  border-radius: var(--theme-link-radius);
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  box-shadow: 0 4px 16px rgba(80, 100, 180, 0.06);
+  font-weight: 500;
+  transition:
+    background var(--au-transition),
+    border-color var(--au-transition),
+    box-shadow var(--au-transition),
+    transform var(--au-transition);
+}
+
+[data-theme-id="aurora"] a.theme-link:hover {
+  border-color: color-mix(in srgb, hsl(var(--primary)) 45%, hsl(var(--border)));
+  box-shadow: 0 10px 28px rgba(80, 100, 200, 0.14);
+  transform: translateY(-1px);
+  color: hsl(var(--primary));
+}
+
+[data-theme-id="aurora"] a.theme-link .theme-link-icon {
+  color: hsl(var(--primary));
+}
+
+[data-theme-id="aurora"] .theme-avatar {
+  box-shadow: var(--theme-shadow);
+  border-color: hsl(var(--border));
+}

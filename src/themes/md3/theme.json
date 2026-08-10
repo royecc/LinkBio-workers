@@ -1,0 +1,13 @@
+{
+  "id": "md3",
+  "name": "Material 3",
+  "nameZh": "Material 3",
+  "description": "Material Design 3 baseline — purple seed #6750A4, tonal surfaces, Roboto, 12/16/24 shape, filled first CTA",
+  "version": 2,
+  "tokensFile": "tokens.css",
+  "features": {
+    "blur": false,
+    "gradientBg": false,
+    "customFonts": true
+  }
+}
