@@ -1,0 +1,309 @@
+/* Kumo tokens/utilities for Admin; must precede Tailwind so @theme registers first */
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@import "@cloudflare/kumo/styles/tailwind";
+
+@import "tailwindcss";
+/* Visual packs: data-theme-id + shared layout (generated) */
+@import "../src/themes/_bundle.css";
+
+/* shadcn-style tokens + color mode via data-theme (system|light|dark) */
+:root {
+  --radius: 0.9rem;
+  --background: 0 0% 98%;
+  --foreground: 240 10% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 4%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 6% 10%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 6% 10%;
+  --destructive: 0 84% 60%;
+  --border: 240 6% 90%;
+  --input: 240 6% 90%;
+  --ring: 239 84% 67%;
+}
+
+/* Default dark when no data-theme or dark */
+:root,
+[data-theme="dark"] {
+  --background: 240 6% 4%;
+  --foreground: 0 0% 98%;
+  --card: 240 5% 8%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 5% 8%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 4% 14%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 4% 14%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 240 4% 14%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 51%;
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 239 84% 67%;
+}
+
+[data-theme="light"] {
+  --background: 0 0% 98%;
+  --foreground: 240 10% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 4%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 6% 10%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 6% 10%;
+  --destructive: 0 84% 60%;
+  --border: 240 6% 90%;
+  --input: 240 6% 90%;
+  --ring: 239 84% 67%;
+}
+
+[data-theme="system"] {
+  --background: 240 6% 4%;
+  --foreground: 0 0% 98%;
+  --card: 240 5% 8%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 5% 8%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 4% 14%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 4% 14%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 240 4% 14%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 51%;
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 239 84% 67%;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="system"] {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 10%;
+    --destructive: 0 84% 60%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 239 84% 67%;
+  }
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+  }
+
+  /*
+   * Kumo sets color-scheme: light on :root. Restore our data-theme-driven scheme
+   * so the public site and light-dark() tokens stay consistent.
+   */
+  :root[data-theme="light"],
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  :root[data-theme="dark"],
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  :root[data-theme="system"],
+  [data-theme="system"] {
+    color-scheme: light dark;
+  }
+}
+
+/* ── Admin (Kumo) shell: layout only; colors via Kumo tokens ── */
+.admin-kumo {
+  min-height: 100vh;
+  background: var(--color-kumo-canvas, hsl(var(--background)));
+  color: var(--text-color-kumo-default, hsl(var(--foreground)));
+}
+
+.admin-kumo[data-mode="light"] {
+  color-scheme: light;
+}
+
+.admin-kumo[data-mode="dark"] {
+  color-scheme: dark;
+}
+
+.admin-kumo .admin-shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  /* Extra top padding clears fixed prefs toolbar */
+  padding: max(3.5rem, calc(env(safe-area-inset-top, 0px) + 3rem))
+    max(1rem, env(safe-area-inset-right, 0px))
+    max(2rem, env(safe-area-inset-bottom, 0px))
+    max(1rem, env(safe-area-inset-left, 0px));
+}
+
+@media (min-width: 640px) {
+  .admin-kumo .admin-shell {
+    padding: max(3.75rem, calc(env(safe-area-inset-top, 0px) + 3.25rem))
+      max(1.25rem, env(safe-area-inset-right, 0px)) 3rem
+      max(1.25rem, env(safe-area-inset-left, 0px));
+  }
+}
+
+.admin-kumo .admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  min-width: 0;
+}
+
+.admin-kumo .admin-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.admin-kumo .admin-nav-links a,
+.admin-kumo .admin-nav-links button {
+  min-height: 2.25rem;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .admin-kumo .admin-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+}
+
+.admin-kumo .admin-select {
+  display: flex;
+  height: 2.25rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background: var(--color-kumo-control, hsl(var(--background)));
+  color: var(--text-color-kumo-default, hsl(var(--foreground)));
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  box-shadow: 0 0 0 1px var(--color-kumo-line, hsl(var(--border)));
+}
+
+.admin-kumo .admin-select:focus {
+  outline: 2px solid var(--color-kumo-focus, hsl(var(--ring)));
+  outline-offset: 1px;
+}
+
+/* Theme picker cards: whole label clickable; :checked updates highlight immediately */
+.admin-kumo .admin-theme-card {
+  cursor: pointer;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-kumo-hairline, hsl(var(--border)));
+  padding: 0.75rem;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.admin-kumo .admin-theme-card:hover {
+  border-color: color-mix(in oklch, var(--color-kumo-focus, #000) 40%, transparent);
+}
+
+.admin-kumo .admin-theme-card:has(input[name="theme"]:checked) {
+  border-color: var(--color-kumo-focus, hsl(var(--ring)));
+  background: var(--color-kumo-tint, hsl(var(--muted)));
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-kumo-focus, #000) 30%, transparent);
+}
+
+.admin-kumo .admin-theme-card:has(input[name="theme"]:focus-visible) {
+  outline: 2px solid var(--color-kumo-focus, hsl(var(--ring)));
+  outline-offset: 2px;
+}
+
+/* Admin prefs toolbar (color + locale) — mirrors public theme-toolbar placement */
+.admin-prefs-toolbar {
+  position: fixed;
+  z-index: 60;
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
+  right: max(0.75rem, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: min(100vw - 1rem, 12rem);
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.admin-prefs-toolbar > * {
+  pointer-events: auto;
+}
